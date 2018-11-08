@@ -16,9 +16,6 @@ router.post('/feed-form', (req,res,next) => {
         if (err) {
             return res.json({ success: false, msg: 'User dont have verification code' });
         }
-        // if(valid){
-        //     return res.json({ success: false, msg: 'User exist' });
-        // }
         else {
             console.log("valid",valid)
             let newUser = new Feed({
@@ -42,8 +39,9 @@ router.post('/feed-form', (req,res,next) => {
                         res.json({ success: false, msg: 'Failed to register' });
                     }
                     else {
-                        let query = {$set:{count:counts}}
-                            Feed.update(query, function(err,raw) {
+                        // let query = {$set:{count:counts, userId:newUser.userId}}
+                            let query = {$set:{count:counts}}
+                            Feed.update({userId:newUser.userId}, query, {multi: true}, function(err,raw) {
                                 if (err) return handleError(err);
                                 console.log('The raw response from Mongo was ', raw);
                             });
@@ -56,5 +54,19 @@ router.post('/feed-form', (req,res,next) => {
         
     })
 });
+
+router.get('/getCount/:userId', (req,res,next) =>{
+    Feed.getCount(req, (err, data)=>{
+        if (err) {
+            // console.log(err);
+            res.json({ success: false, msg: 'Failed to get data' });
+        }
+        else {
+            // console.log(data);
+            res.json({ success: true, data: data });
+        }
+    });
+});
+
 
 module.exports = router; 

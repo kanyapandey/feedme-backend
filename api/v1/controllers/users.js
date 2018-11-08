@@ -5,12 +5,13 @@ const Register = require('../models/register');
 const jwt = require('jsonwebtoken');
 const config = require('../../../config/database');
 var bcrypt = require('bcryptjs');
+const passport = require('passport');
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 const moment = require('moment');
 
 
-router.post('/register', (req,res,next) => {
+router.post('/register',  (req,res,next) => {
     const email = req.body.email;
 
     Register.getUserByEmail(email, (err,valid) =>{
@@ -89,7 +90,6 @@ router.post('/checkCode', (req,res,next) =>{
         } else {
             return res.json({ success: true, token: 'JWT ' + token, msg: data });
         }
-        // return res.json({ success: true, msg: data });
     });
 });
 

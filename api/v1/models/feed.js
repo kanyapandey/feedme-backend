@@ -49,3 +49,11 @@ module.exports.getUserByUserId = function(userId,callback){
     const query = {userId:userId}
     Feed.findOne(query,callback);
 };
+
+module.exports.getCount = function(req,callback){
+    let filter = {};
+    if(req.params.userId){
+        filter = {userId:req.params.userId};
+    }
+    Feed.find(filter,callback);
+};

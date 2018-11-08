@@ -1,12 +1,12 @@
 const express = require ('express');
 const app =  express();
 const validate = require('express-validator');
-const { check } = require('express-validator/check');
 const bodyParser = require ("body-parser");
 const cors = require ("cors");
 const dbConfig = require ("./config/database");
 const appConfig = require ("./config/application");
 const mongoose = require ("mongoose");
+const passport = require ("passport");
 //connecting to mongo db
 mongoose.connect(dbConfig.database);
 
@@ -22,6 +22,7 @@ app.use(cors())
 app.use(validate());
 //body parser midleware
 app.use(bodyParser.json());
+
 
 // user module
 // const users = require ('./controllers/users.js');

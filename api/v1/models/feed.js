@@ -57,3 +57,11 @@ module.exports.getCount = function(req,callback){
     }
     Feed.find(filter,callback);
 };
+
+module.exports.getFeed = function(req,callback){
+    let filter = {};
+    if(req.params.userId){
+        filter = {userId:req.params.userId};
+    }
+    Feed.find(filter,"-contact -__v -userId -count", callback);
+};

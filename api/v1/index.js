@@ -8,3 +8,5 @@ router.use('/users', require('./controllers/users'));
 router.use('/register', require('./controllers/register'));
 
 router.use('/feed', require('./controllers/feed'));
+
+router.use('/updateprofile', require('./controllers/updateprofile'));

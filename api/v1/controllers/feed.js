@@ -8,7 +8,6 @@ const config = require('../../../config/database');
 var bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
-const moment = require('moment');
 
 router.post('/feed-form', (req,res,next) => {
     const email = req.body.email;
@@ -18,6 +17,7 @@ router.post('/feed-form', (req,res,next) => {
         }
         else {
             console.log("valid",valid)
+            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             let newUser = new Feed({
                 category: req.body.category,
                 subject: req.body.subject,
@@ -25,7 +25,9 @@ router.post('/feed-form', (req,res,next) => {
                 description: req.body.description,
                 contact: req.body.contact,
                 userId: valid.userId,
-                count: ''
+                count: '',
+                date: new Date().toLocaleTimeString("en-US", options),
+                feedId: Math.floor(Math.random()*10000)
             });
             Feed.addUserDetails(newUser, (err, response) => {
                 console.log("valid userid",newUser.userId)

@@ -27,6 +27,14 @@ const UserSchema = mongoose.Schema({
     },
     count:{
         type: Number
+    },
+    date:{
+        // type: Date,
+        type: String
+        // created: Date
+    },
+    feedId: {
+        type: Number
     }
 })
 
@@ -63,5 +71,5 @@ module.exports.getFeed = function(req,callback){
     if(req.params.userId){
         filter = {userId:req.params.userId};
     }
-    Feed.find(filter,"-contact -__v -userId -count", callback);
+    Feed.find(filter,"-contact -__v -userId -count",{sort: {'feedId': -1}}, callback);
 };

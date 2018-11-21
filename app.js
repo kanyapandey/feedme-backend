@@ -19,6 +19,7 @@ mongoose.connection.on('error',(err) => {
 });
 app.use(cors())
 
+app.set('port', process.env.port || 1337);
 app.use(validate());
 //body parser midleware
 app.use(bodyParser.json());
@@ -35,8 +36,11 @@ app.get('/',(req,res)=>{
 });
 
 //start server
-app.listen(appConfig.port,function(){
-    console.log("Server is listening on port ::" + appConfig.port);
+// app.listen(appConfig.port,function(){
+//     console.log("Server is listening on port ::" + appConfig.port);
+// });
+app.listen(process.env.port,function(){
+    console.log("Server is listening on port :: 1337" );
 });
 
 

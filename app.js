@@ -2,7 +2,7 @@ const express = require ('express');
 const app =  express();
 const validate = require('express-validator');
 const bodyParser = require ("body-parser");
-// const cors = require ("cors");
+const cors = require ("cors");
 const dbConfig = require ("./config/database");
 const appConfig = require ("./config/application");
 const mongoose = require ("mongoose");
@@ -17,7 +17,7 @@ mongoose.connection.on('connected',() => {
 mongoose.connection.on('error',(err) => {
     console.log("Error while connecting to db: "+err);
 });
-// app.use(cors())
+app.use(cors())
 
 app.use(validate());
 //body parser midleware

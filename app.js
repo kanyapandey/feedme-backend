@@ -36,11 +36,11 @@ app.get('/',(req,res)=>{
 });
 
 //start server
-// app.listen(appConfig.port,function(){
-//     console.log("Server is listening on port ::" + appConfig.port);
-// });
-app.listen(process.env.port,function(){
-    console.log("Server is listening on port :: 1337" );
+app.listen(appConfig.port,function(){
+    console.log("Server is listening on port ::" + appConfig.port);
 });
+// app.listen(process.env.port,function(){
+//     console.log("Server is listening on port :: 1337" );
+// });
 
 

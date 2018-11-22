@@ -28,7 +28,7 @@ router.post('/feed-form', (req,res,next) => {
                 count: '',
                 date: new Date().toLocaleString('en-US', {
                     timeZone: 'Asia/Bangkok'
-                }),
+                },options),
                 // date: new Date().toLocaleTimeString("en-US", options),
                 feedId: Math.floor(Math.random()*10000)
             });

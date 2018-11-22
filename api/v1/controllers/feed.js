@@ -26,7 +26,10 @@ router.post('/feed-form', (req,res,next) => {
                 contact: req.body.contact,
                 userId: valid.userId,
                 count: '',
-                date: new Date().toLocaleTimeString("en-US", options),
+                date: new Date().toLocaleString('en-US', {
+                    timeZone: 'Asia/Bangkok'
+                }),
+                // date: new Date().toLocaleTimeString("en-US", options),
                 feedId: Math.floor(Math.random()*10000)
             });
             Feed.addUserDetails(newUser, (err, response) => {

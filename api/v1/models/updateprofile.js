@@ -52,3 +52,11 @@ module.exports.login = function(username,password,  callback) {
     const query = {username:username,password:password}
     Update.findOne(query,callback);
 };
+
+module.exports.getProfile = function(req,callback){
+    let filter = {};
+    if(req.params.userId){
+        filter = {userId:req.params.userId};
+    }
+    Update.find(filter,"-_id -__v -userId ", callback);
+};

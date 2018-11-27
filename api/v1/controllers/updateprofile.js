@@ -16,7 +16,7 @@ router.post('/update-profile/:userId', (req,res,next) => {
         Update.findOne(query, (err,response)=> {
             console.log("res",response)
             if(response){
-                let query = {$set:{username:req.body.username,password:req.body.password,birthyear:req.body.birthyear,gender:req.body.gender,status:req.body.status,bu:req.body.bu,email:req.body.email,phone:req.body.phone}}
+                let query = {$set:{password:req.body.password,birthyear:req.body.birthyear,gender:req.body.gender,status:req.body.status,bu:req.body.bu,email:req.body.email,phone:req.body.phone}}
                 Update.update({userId:req.params.userId}, query, function(err,raw) {
                     if (err) return handleError(err);
                     console.log('The raw response from Mongo was ', raw);

@@ -17,8 +17,8 @@ mongoose.connection.on('connected',() => {
 mongoose.connection.on('error',(err) => {
     console.log("Error while connecting to db: "+err);
 });
+// app.use(cors())
 app.use(cors())
-
 app.use(validate());
 //body parser midleware
 app.use(bodyParser.json());

@@ -8,29 +8,43 @@ const config = require('../../../config/database');
 const mongoose = require('mongoose');
 
 
-router.post('/update-profile', (req,res,next) => {
-    const user_email = req.body.user_email;
-    User.getUserByEmail(user_email, (err,valid) =>{
-        let newProfile = new Update({
-            username: req.body.username,
-            password: req.body.password,
-            birthyear: req.body.birthyear,
-            gender: req.body.gender,
-            status: req.body.status,
-            userId: valid.userId,
-            bu: req.body.bu,
-            email: req.body.email,
-            phone: req.body.phone
-        });
-        Update.addUserDetails(newProfile, (err, response) => {
-            if (err) {
-                console.log(err);
-                    return res.json({ success: false, msg: 'Failed to insert forgetpassword fields' });
+router.post('/update-profile/:userId', (req,res,next) => {
+    // const user_email = req.body.user_email;
+    const query = {userId:req.params.userId};
+    User.findOne(query, (err,valid) =>{
+        console.log("valid",valid)
+        Update.findOne(query, (err,response)=> {
+            console.log("res",response)
+            if(response){
+                let query = {$set:{username:req.body.username,password:req.body.password,birthyear:req.body.birthyear,gender:req.body.gender,status:req.body.status,bu:req.body.bu,email:req.body.email,phone:req.body.phone}}
+                Update.update({userId:req.params.userId}, query, function(err,raw) {
+                    if (err) return handleError(err);
+                    console.log('The raw response from Mongo was ', raw);
+                });
+                res.json({success:true, msg:"success in modifying"})
+            }else{
+                let newProfile = new Update({
+                    username: req.body.username,
+                    password: req.body.password,
+                    birthyear: req.body.birthyear,
+                    gender: req.body.gender,
+                    status: req.body.status,
+                    userId: valid.userId,
+                    bu: req.body.bu,
+                    email: req.body.email,
+                    phone: req.body.phone
+                });
+                Update.addUserDetails(newProfile, (err, response) => {
+                    if (err) {
+                        console.log(err);
+                            return res.json({ success: false, msg: 'Failed to insert forgetpassword fields' });
+                    }
+                    else {
+                            return res.json({ success: true, msg: 'Fields added in ForgetPassword Table' });
+                    }
+                });
             }
-            else {
-                    return res.json({ success: true, msg: 'Fields added in ForgetPassword Table' });
-            }
-        });
+        })
     });
 });
 
@@ -47,7 +61,7 @@ router.post('/login', (req,res,next) =>{
     });
 });
 
-router.get('/userprofile/:_id', (req,res,next) => {
+router.get('/userprofile/:userId', (req,res,next) => {
     Update.getProfile(req, (err, data)=>{
         if (err) {
             // console.log(err);
@@ -59,5 +73,4 @@ router.get('/userprofile/:_id', (req,res,next) => {
         }
     });
 });
-
 module.exports = router; 

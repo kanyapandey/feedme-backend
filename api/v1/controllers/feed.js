@@ -19,6 +19,7 @@ router.post('/feed-form', (req,res,next) => {
             function padDigits(number, digits) {
                 return Array(Math.max(digits - String(number).length + 1, 0)).join(0) + number;
             }
+            var feedNo = 0;
             var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             let newUser = new Feed({
                 category: req.body.category,
@@ -33,7 +34,7 @@ router.post('/feed-form', (req,res,next) => {
                 },options),
                 // date: new Date().toLocaleTimeString("en-US", options),
                 // feedId: Math.floor(Math.random()*1000000),
-                feedId: padDigits(1, 6)
+                feedId: padDigits(feedNo+1, 6)
             });
             Feed.addUserDetails(newUser, (err, response) => {
                 console.log("valid userid",newUser.userId)

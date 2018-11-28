@@ -16,11 +16,6 @@ router.post('/feed-form', (req,res,next) => {
             return res.json({ success: false, msg: 'User dont have verification code' });
         }
         else {
-            // function padDigits(number, digits) {
-            //     return Array(Math.max(digits - String(number).length + 1, 0)).join(0) + number;
-            // }
-            // var feedNo = 0;
-            // const str1 = '1';
             var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             let newUser = new Feed({
                 category: req.body.category,
@@ -33,10 +28,7 @@ router.post('/feed-form', (req,res,next) => {
                 date: new Date().toLocaleString('en-US', {
                     timeZone: 'Asia/Bangkok'
                 },options),
-                // date: new Date().toLocaleTimeString("en-US", options),
-                feedId: Math.floor(Math.random()*1000000)
-                // feedId: padDigits(feedNo+1, 6),
-                // feedId: str1.padStart(6, '0')
+                feedId: ''
             });
             // str1 = str1 + 1;
             Feed.addUserDetails(newUser, (err, response) => {
@@ -44,7 +36,8 @@ router.post('/feed-form', (req,res,next) => {
 
                 let quary = {$or:[{userId:newUser.userId}]}
                 Feed.findOne(quary).count(function (e, counts) {
-
+                    newUser.feedId = "00000" + counts;
+                    newUser.save();
                     console.log(counts);
                     if (err) {
                         console.log(err);

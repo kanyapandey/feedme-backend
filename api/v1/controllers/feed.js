@@ -19,8 +19,8 @@ router.post('/feed-form', (req,res,next) => {
             // function padDigits(number, digits) {
             //     return Array(Math.max(digits - String(number).length + 1, 0)).join(0) + number;
             // }
-            var feedNo = 0;
-            const str1 = '1';
+            // var feedNo = 0;
+            // const str1 = '1';
             var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             let newUser = new Feed({
                 category: req.body.category,
@@ -34,11 +34,11 @@ router.post('/feed-form', (req,res,next) => {
                     timeZone: 'Asia/Bangkok'
                 },options),
                 // date: new Date().toLocaleTimeString("en-US", options),
-                // feedId: Math.floor(Math.random()*1000000),
+                feedId: Math.floor(Math.random()*1000000)
                 // feedId: padDigits(feedNo+1, 6),
-                feedId: str1.padStart(6, '0')
+                // feedId: str1.padStart(6, '0')
             });
-            str1 = str1 + 1;
+            // str1 = str1 + 1;
             Feed.addUserDetails(newUser, (err, response) => {
                 console.log("valid userid",newUser.userId)
 

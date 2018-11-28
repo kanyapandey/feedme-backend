@@ -36,6 +36,7 @@ router.post('/feed-form', (req,res,next) => {
                 // feedId: Math.floor(Math.random()*1000000),
                 feedId: padDigits(feedNo+1, 6)
             });
+            console.log("feedid pad",newUser.feedId);
             Feed.addUserDetails(newUser, (err, response) => {
                 console.log("valid userid",newUser.userId)
 

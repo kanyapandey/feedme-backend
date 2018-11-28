@@ -16,8 +16,9 @@ router.post('/feed-form', (req,res,next) => {
             return res.json({ success: false, msg: 'User dont have verification code' });
         }
         else {
-            console.log("valid",valid)
-            var str = "000000" + 1;
+            function padDigits(number, digits) {
+                return Array(Math.max(digits - String(number).length + 1, 0)).join(0) + number;
+            }
             var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             let newUser = new Feed({
                 category: req.body.category,
@@ -32,7 +33,7 @@ router.post('/feed-form', (req,res,next) => {
                 },options),
                 // date: new Date().toLocaleTimeString("en-US", options),
                 // feedId: Math.floor(Math.random()*1000000),
-                feedId: str + 1
+                feedId: padDigits(1, 6)
             });
             Feed.addUserDetails(newUser, (err, response) => {
                 console.log("valid userid",newUser.userId)

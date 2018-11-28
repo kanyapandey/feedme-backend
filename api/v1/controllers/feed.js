@@ -41,7 +41,7 @@ router.post('/feed-form', (req,res,next) => {
                     console.log(counts);
                     if (err) {
                         console.log(err);
-                        res.json({ success: false, msg: 'Failed to register' });
+                        return res.json({ success: false, msg: 'Failed to register' });
                     }
                     else {
                         // let query = {$set:{count:counts, userId:newUser.userId}}
@@ -51,7 +51,7 @@ router.post('/feed-form', (req,res,next) => {
                                 console.log('The raw response from Mongo was ', raw);
                             });
                         var data = counts;
-                        res.json({ success: true, msg: data });
+                        return res.json({ success: true, msg: data });
                     }
                 });
             });
@@ -64,11 +64,11 @@ router.get('/getCount/:userId', (req,res,next) =>{
     Feed.getCount(req, (err, data)=>{
         if (err) {
             // console.log(err);
-            res.json({ success: false, msg: 'Failed to get data' });
+            return res.json({ success: false, msg: 'Failed to get data' });
         }
         else {
             // console.log(data);
-            res.json({ success: true, data: data });
+            return res.json({ success: true, data: data });
         }
     });
 });
@@ -77,11 +77,11 @@ router.get('/getFeed/:userId', (req,res,next) =>{
     Feed.getFeed(req, (err, data)=>{
         if (err) {
             // console.log(err);
-            res.json({ success: false, msg: 'Failed to get data' });
+            return res.json({ success: false, msg: 'Failed to get data' });
         }
         else {
             // console.log(data);
-            res.json({ success: true, data: data });
+            return res.json({ success: true, data: data });
         }
     });
 });

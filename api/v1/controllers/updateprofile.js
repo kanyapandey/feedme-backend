@@ -21,7 +21,7 @@ router.post('/update-profile/:userId', (req,res,next) => {
                     if (err) return handleError(err);
                     console.log('The raw response from Mongo was ', raw);
                 });
-                res.json({success:true, msg:"success in modifying"})
+                return res.json({success:true, msg:"success in modifying"})
             }else{
                 let newProfile = new Update({
                     username: req.body.username,
@@ -65,11 +65,11 @@ router.get('/userprofile/:userId', (req,res,next) => {
     Update.getProfile(req, (err, data)=>{
         if (err) {
             // console.log(err);
-            res.json({ success: false, msg: 'Failed to get data' });
+            return res.json({ success: false, msg: 'Failed to get data' });
         }
         else {
             // console.log(data);
-            res.json({ success: true, data: data });
+            return res.json({ success: true, data: data });
         }
     });
 });

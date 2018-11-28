@@ -83,12 +83,10 @@ router.post('/checkCode', (req,res,next) =>{
     User.getResetDate(vCode, (err, data) => {
         console.log("data",data)
         if (err) throw err;
-        const token = jwt.sign({data:data._id}, config.secret);
-        console.log(token)
         if (!data) {
             return res.json({ success: false, msg: 'Verification code is expired' });
         } else {
-            return res.json({ success: true, token: 'JWT ' + token, msg: data });
+            return res.json({ success: true, msg: data });
         }
     });
 });

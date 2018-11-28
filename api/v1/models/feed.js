@@ -34,7 +34,7 @@ const UserSchema = mongoose.Schema({
         // created: Date
     },
     feedId: {
-        type: Number
+        type: String
     }
 })
 

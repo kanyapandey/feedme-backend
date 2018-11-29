@@ -19,7 +19,8 @@ router.post('/register',  (req,res,next) => {
             if(response){
                 return res.json({ success: false, msg: 'User exist' });
             } else {
-                let randomNumber = Math.floor(Math.random()*100000);
+                // let randomNumber = Math.floor(Math.random()*100000);
+                let randomNumber = Math.random().toString(36).slice(-10);
                 var smtpTransport = nodemailer.createTransport({
                     service: 'gmail',
                     host: 'smpt.gmail.com',
@@ -40,7 +41,10 @@ router.post('/register',  (req,res,next) => {
                         
                         <p>Your Verification Code is :</p>
                         <b>${randomNumber}</b>
-
+                        <p>==============</p>
+                        <p>Click the link beflow for validation your code</p>
+                        <p>==============</p>
+                        https://feedme-forward.firebaseapp.com/#/codevalidate
                         <p>==============</p>
                     </div>
                     `

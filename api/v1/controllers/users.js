@@ -58,7 +58,7 @@ router.post('/register',  (req,res,next) => {
                             status: req.body.status,
                             type: req.body.type,
                             userId: valid._id,
-                            clientId: req.body.clientId
+                            // clientId: req.body.clientId
                         });
                             User.addUserDetails(newUser, (err, response) => {
                                 if (err) {

@@ -23,9 +23,6 @@ const UserSchema = mongoose.Schema({
     },
     userId:{
         type: mongoose.Schema.Types.ObjectId
-    },
-    clientId:{
-        type: String
     }
 })
 

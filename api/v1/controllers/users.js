@@ -59,12 +59,15 @@ router.post('/register',  cors(), (req,res,next) => {
                         let newUser = new User({
                             email: valid.email,
                             vCode: randomNumber,
-                            exp_date: moment().add(1, 'days'),
+                            exp_date: moment().add(2, 'minutes'),
                             status: req.body.status,
                             type: req.body.type,
                             userId: valid._id,
                             // clientId: req.body.clientId
                         });
+                        if(newUser.exp_date){
+                            newUser.exp_date = moment().add(2, 'minutes') 
+                        }else {
                             User.addUserDetails(newUser, (err, response) => {
                                 if (err) {
                                     console.log(err);
@@ -74,6 +77,7 @@ router.post('/register',  cors(), (req,res,next) => {
                                         return res.json({ success: true, msg: 'Fields added in ForgetPassword Table' });
                                 }
                             });
+                        }
                     } 
                     
                 });

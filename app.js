@@ -21,11 +21,11 @@ mongoose.connection.on('error',(err) => {
 
 
 
-app.use(cors())
+// app.use(cors())
 
 // app.use(cors())
 
-
+app.use(cors())
 
 
 // app.use(cors())

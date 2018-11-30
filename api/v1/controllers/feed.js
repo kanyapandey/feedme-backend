@@ -37,6 +37,13 @@ router.post('/feed-form', (req,res,next) => {
                 let quary = {$or:[{userId:newUser.userId}]}
                 Feed.findOne(quary).count(function (e, counts) {
                     newUser.feedId = "00000" + counts;
+                    if (counts.length === 1){
+                        newUser.feedId = "00000" + counts;
+                    }else if (counts.length === 2) {
+                        newUser.feedId = "0000" + counts;
+                    }else if (counts.length === 3){
+                        newUser.feedId = "000" + counts;
+                    }
                     newUser.save();
                     console.log(counts);
                     if (err) {

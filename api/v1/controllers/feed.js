@@ -8,8 +8,9 @@ const config = require('../../../config/database');
 var bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
+const cors = require ("cors");
 
-router.post('/feed-form', (req,res,next) => {
+router.post('/feed-form', cors(), (req,res,next) => {
     const email = req.body.email;
     User.getUserByEmail(email, (err, valid) => {
         if (err) {
@@ -67,7 +68,7 @@ router.post('/feed-form', (req,res,next) => {
     })
 });
 
-router.get('/getCount/:userId', (req,res,next) =>{
+router.get('/getCount/:userId', cors(), (req,res,next) =>{
     Feed.getCount(req, (err, data)=>{
         if (err) {
             // console.log(err);
@@ -80,7 +81,7 @@ router.get('/getCount/:userId', (req,res,next) =>{
     });
 });
 
-router.get('/getFeed/:userId', (req,res,next) =>{
+router.get('/getFeed/:userId', cors(), (req,res,next) =>{
     Feed.getFeed(req, (err, data)=>{
         if (err) {
             // console.log(err);
@@ -92,5 +93,4 @@ router.get('/getFeed/:userId', (req,res,next) =>{
         }
     });
 });
-
 module.exports = router; 

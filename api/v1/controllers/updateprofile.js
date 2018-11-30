@@ -6,9 +6,10 @@ const Register = require('../models/register');
 const Update = require('../models/updateprofile');
 const config = require('../../../config/database');
 const mongoose = require('mongoose');
+const cors = require ("cors");
 
 
-router.post('/update-profile/:userId', (req,res,next) => {
+router.post('/update-profile/:userId', cors(), (req,res,next) => {
     // const user_email = req.body.user_email;
     const query = {userId:req.params.userId};
     User.findOne(query, (err,valid) =>{
@@ -48,7 +49,7 @@ router.post('/update-profile/:userId', (req,res,next) => {
     });
 });
 
-router.post('/login', (req,res,next) =>{
+router.post('/login', cors(), (req,res,next) =>{
     const username = req.body.username;
     const password = req.body.password;
     Update.login(username,password, (err, data) => {
@@ -61,7 +62,7 @@ router.post('/login', (req,res,next) =>{
     });
 });
 
-router.get('/userprofile/:userId', (req,res,next) => {
+router.get('/userprofile/:userId', cors(), (req,res,next) => {
     Update.getProfile(req, (err, data)=>{
         if (err) {
             // console.log(err);

@@ -2,13 +2,12 @@ const express = require ('express');
 const app =  express();
 const validate = require('express-validator');
 const bodyParser = require ("body-parser");
-// const cors = require ("cors");
+const cors = require ("cors");
 const dbConfig = require ("./config/database");
 const appConfig = require ("./config/application");
 const mongoose = require ("mongoose");
 const passport = require ("passport");
 //connecting to mongo db
-const cors = require('cors')({origin: true});
 mongoose.connect(dbConfig.database);
 
 mongoose.connection.on('connected',() => {
@@ -21,8 +20,6 @@ mongoose.connection.on('error',(err) => {
 
 app.use(cors())
 //app.use(function(req, res, next) { res.header("Access-Control-Allow-Origin", "*"); res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); next(); });
-
-//  { res.header("Access-Control-Allow-Origin", "*"); res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); next(); });
 
 app.use(validate());
 //body parser midleware
@@ -46,5 +43,4 @@ app.listen(process.env.PORT || 3000,function(){
 // app.listen(process.env.port,function(){
 //     console.log("Server is listening on port :: 1337" );
 // });
-
 

@@ -8,8 +8,9 @@ var bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 const moment = require('moment');
+const cors = require ("cors");
 
-router.post('/register-email', (req,res,next) => {
+router.post('/register-email', cors(), (req,res,next) => {
     const email = req.body.email;
     Register.getUserByEmail(email, (err,valid) =>{
         if(valid){

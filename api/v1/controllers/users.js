@@ -63,13 +63,13 @@ router.post('/register',  cors(), (req,res,next) => {
                         let newUser = new User({
                             email: valid.email,
                             vCode: randomNumber,
-                            exp_date: date.getSeconds()+60,
+                            exp_date: date,
                             status: req.body.status,
                             type: req.body.type,
                             userId: valid._id,
                             // clientId: req.body.clientId
                         });
-                            console.log("newUser.exp_date",newUser.exp_date);
+                            // console.log("newUser.exp_date",newUser.exp_date);
                         
                             User.addUserDetails(newUser, (err, response) => {
                                 if (err) {

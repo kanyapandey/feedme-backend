@@ -62,7 +62,7 @@ router.post('/register',  cors(), (req,res,next) => {
                         let newUser = new User({
                             email: valid.email,
                             vCode: randomNumber,
-                            exp_date: moment(date).add(2, 'minutes'),
+                            exp_date: date,
                             status: req.body.status,
                             type: req.body.type,
                             userId: valid._id,

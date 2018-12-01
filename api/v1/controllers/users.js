@@ -66,7 +66,8 @@ router.post('/register',  cors(), (req,res,next) => {
                             // clientId: req.body.clientId
                         });
                         // if(newUser.exp_date){
-                        //     newUser.exp_date = newUser.exp_date.moment().add(2, 'minutes') 
+                            console.log("newUser.exp_date",newUser.exp_date);
+                            // newUser.exp_date = moment().add(2, 'minutes') 
                         // }else {
                             User.addUserDetails(newUser, (err, response) => {
                                 if (err) {

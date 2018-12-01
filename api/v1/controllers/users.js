@@ -69,10 +69,8 @@ router.post('/register',  cors(), (req,res,next) => {
                             userId: valid._id,
                             // clientId: req.body.clientId
                         });
-                        if(newUser.exp_date){
                             console.log("newUser.exp_date",newUser.exp_date);
-                            newUser.exp_date = date.getSeconds()+60 
-                        }else {
+                        
                             User.addUserDetails(newUser, (err, response) => {
                                 if (err) {
                                     console.log(err);
@@ -82,7 +80,7 @@ router.post('/register',  cors(), (req,res,next) => {
                                         return res.json({ success: true, msg: 'Fields added in ForgetPassword Table' });
                                 }
                             });
-                        }
+                        
                     } 
                     
                 });

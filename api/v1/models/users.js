@@ -13,7 +13,7 @@ const UserSchema = mongoose.Schema({
         type: String
     },
     exp_date: {
-        type: Date
+        type: String
     },
     status:{
         type: String

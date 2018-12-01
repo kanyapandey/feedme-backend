@@ -100,9 +100,9 @@ router.post('/checkCode', cors(), (req,res,next) =>{
         if (!data && data.firstTime =="false") {
             return res.json({ success: false, msg: 'Verification code is expired' });
         } else {
-            res.json({ success: true, msg: data });
             data.firstTime = "false";
             data.save();
+            return res.json({ success: true, msg: data });
         }
     });
 });

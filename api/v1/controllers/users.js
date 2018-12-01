@@ -97,7 +97,7 @@ router.post('/checkCode', cors(), (req,res,next) =>{
     User.getResetDate(vCode, (err, data) => {
         console.log("data",data)
         if (err) throw err;
-        if (!data && data.firstTime =="false") {
+        if (!data) {
             return res.json({ success: false, msg: 'Verification code is expired' });
         } else {
             data.firstTime = "false";

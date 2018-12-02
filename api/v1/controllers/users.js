@@ -15,7 +15,7 @@ const cors = require ("cors");
 router.post('/register',  cors(), (req,res,next) => {
     const email = req.body.email;
 
-    Register.getUserByEmail(email, (err,valid) =>{
+    // Register.getUserByEmail(email, (err,valid) =>{
         User.getUserByEmail(email, (err,response) => {
             if(response){
                 return res.json({ success: false, msg: 'User exist' });
@@ -89,7 +89,7 @@ router.post('/register',  cors(), (req,res,next) => {
             }
         });
     
-    });
+    // });
 });
 
 router.post('/checkCode', cors(), (req,res,next) =>{

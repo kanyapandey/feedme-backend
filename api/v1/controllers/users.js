@@ -60,12 +60,12 @@ router.post('/register',  cors(), (req,res,next) => {
                             timeZone: 'Asia/Bangkok'
                         });
                         let newUser = new User({
-                            email: valid.email,
+                            email: req.body.email,
                             vCode: randomNumber,
                             exp_date: date,
                             status: req.body.status,
                             type: req.body.type,
-                            userId: valid._id,
+                            // userId: valid._id,
                             firstTime: "true"
                             // clientId: req.body.clientId
                         });

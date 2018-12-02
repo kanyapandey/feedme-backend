@@ -21,9 +21,9 @@ const UserSchema = mongoose.Schema({
     type:{
         type: String
     },
-    userId:{
-        type: mongoose.Schema.Types.ObjectId
-    },
+    // userId:{
+    //     type: mongoose.Schema.Types.ObjectId
+    // },
     firstTime:{
         type: String
     }

@@ -10,9 +10,11 @@ const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 const cors = require ("cors");
 
-router.post('/feed-form', cors(), (req,res,next) => {
-    const email = req.body.email;
-    User.getUserByEmail(email, (err, valid) => {
+router.post('/feed-form/:userId', cors(), (req,res,next) => {
+    // const email = req.body.email;
+    const query = {userId:req.params.userId};
+    User.findOne(query, (err, valid) => {
+        console.log("valid",valid)
         if (err) {
             return res.json({ success: false, msg: 'User dont have verification code' });
         }

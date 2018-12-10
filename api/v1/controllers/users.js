@@ -64,7 +64,6 @@ router.post('/register',  cors(), (req,res,next) => {
                         exp_date: date,
                         status: req.body.status,
                         type: req.body.type,
-                        userId: response._id,
                         firstTime: "true"
                         // clientId: req.body.clientId
                     });

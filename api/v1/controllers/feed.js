@@ -12,7 +12,7 @@ const cors = require ("cors");
 
 router.post('/feed-form/:userId', cors(), (req,res,next) => {
     // const email = req.body.email;
-    const query = {userId:req.params.userId};
+    const query = {_id:req.params.userId};
     User.findOne(query, (err, valid) => {
         console.log("valid",valid)
         if (err) {
@@ -26,7 +26,7 @@ router.post('/feed-form/:userId', cors(), (req,res,next) => {
                 rating: '',
                 description: req.body.description,
                 contact: req.body.contact,
-                userId: valid.userId,
+                userId: valid._id,
                 count: '',
                 date: new Date().toLocaleString('en-US', {
                     timeZone: 'Asia/Bangkok'

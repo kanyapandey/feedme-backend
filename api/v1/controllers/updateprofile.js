@@ -11,7 +11,7 @@ const cors = require ("cors");
 
 router.post('/update-profile/:userId', cors(), (req,res,next) => {
     // const user_email = req.body.user_email;
-    const query = {userId:req.params.userId};
+    const query = {_id:req.params.userId};
     User.findOne(query, (err,valid) =>{
         console.log("valid",valid)
         Update.findOne(query, (err,response)=> {
@@ -30,7 +30,7 @@ router.post('/update-profile/:userId', cors(), (req,res,next) => {
                     birthyear: req.body.birthyear,
                     gender: req.body.gender,
                     status: req.body.status,
-                    userId: valid.userId,
+                    userId: valid._id,
                     bu: req.body.bu,
                     email: req.body.email,
                     phone: req.body.phone

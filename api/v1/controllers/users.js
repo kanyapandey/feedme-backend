@@ -117,10 +117,9 @@ router.post('/once',  cors(), (req,res,next) => {
                     service: 'gmail',
                     host: 'smpt.gmail.com',
                     port: 587,        
-                    // secure: false, // true for 465, false for other ports
-                    secure: true, // true for 465, false for other ports
+                    secure: false, // true for 465, false for other ports
                     auth: {
-                        user: 'kanja.26p@gmail.com',
+                        user: 'kanju.2603@gmail.com',
                         pass: 'Kp26031995' 
                     }
                 });   

@@ -120,7 +120,7 @@ router.post('/once',  cors(), (req,res,next) => {
                     secure: false, // true for 465, false for other ports
                     auth: {
                         user: 'kanju.2603@gmail.com',
-                        pass: 'Kp26031995' 
+                        pass: 'Kp2603199500' 
                     }
                 });   
                 // setup email data with unicode symbols
